@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './SignupPage.css'
 import { Link } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+
 function SignupPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -71,13 +73,35 @@ function SignupPage() {
           </label>
           <br />
 
-          <br />
+          
           <button type="submit">Create New Account</button>
+          <br />
+
+
+          <GoogleOAuthProvider clientId="300512809788-ld4a8g9ih2bptefiggrcj1lrnohagamt.apps.googleusercontent.com">
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    console.log(credentialResponse)
+                  }}
+                  onError={() => {
+                    console.log('Login Failed')
+                  }}
+                  
+                />
+              </GoogleOAuthProvider>;
+
+
+
+
+
+
+
+
         </form>
-        <span>Already Registered? <Link to="/login"  style={{
-              textDecoration: 'none', 
-              fontWeight: 'bold',     
-            }}>Login</Link></span>
+        <span>Already Registered? <Link to="/login" style={{
+          textDecoration: 'none',
+          fontWeight: 'bold',
+        }}>Login</Link></span>
       </div>
 
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './LogInPage.css';
 // import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const LogInPage = () => {
   const [email, setEmail] = useState('');
@@ -44,6 +45,20 @@ const LogInPage = () => {
           </label>
           <br />
           <button type="submit">Login</button>
+          <br/>
+          <GoogleOAuthProvider clientId="300512809788-ld4a8g9ih2bptefiggrcj1lrnohagamt.apps.googleusercontent.com">
+                <GoogleLogin
+                  onSuccess={credentialResponse => {
+                    console.log(credentialResponse)
+                  }}
+                  onError={() => {
+                    console.log('Login Failed')
+                  }}
+                  
+                />
+              </GoogleOAuthProvider>;
+
+
         </form>
         {/* <span>Not registered yet? Signup</span> */}
         <span>Dont have an account?</span> <span className='Signup-button'> <Link to="/" style={{
